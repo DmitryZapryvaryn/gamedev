@@ -1,3 +1,5 @@
 #pragma once
 
-int sum(int, int);
+#include <string>
+
+std::string fizzBuzz(int);

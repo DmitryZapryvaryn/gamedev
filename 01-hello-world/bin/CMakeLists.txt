@@ -1,12 +1,19 @@
 project(bin CXX)
 
-add_executable(${PROJECT_NAME}-static main.cpp)
+add_executable(${PROJECT_NAME}-static src/main.cpp)
 target_link_libraries(${PROJECT_NAME}-static LINK_PUBLIC lib-static)
 target_link_options(${PROJECT_NAME}-static PRIVATE -static)
 
-add_executable(${PROJECT_NAME}-shared main.cpp)
+add_executable(${PROJECT_NAME}-shared src/main.cpp)
 target_link_libraries(${PROJECT_NAME}-shared LINK_PUBLIC lib-shared)
 
 install(TARGETS ${PROJECT_NAME}-static ${PROJECT_NAME}-shared
-    LIBRARY DESTINATION lib
-    RUNTIME DESTINATION bin)
+    LIBRARY DESTINATION ${PROJECT_BINARY_DIR}/lib
+    ARCHIVE DESTINATION ${PROJECT_BINARY_DIR}/lib
+    RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
+
+if(BUILD_TEST)
+    include(CTest)
+    enable_testing()
+    add_subdirectory(tests)
+endif()

@@ -1,24 +1,22 @@
 version: '1.0.{build}'
 
-image: Visual Studio 2019
-
-init:
-  - vcpkg install sdl2:x64-windows
-  - vcpkg integrate install
+image: Visual Studio 2017
 
 platform:
   - x64
  
 configuration:
+  - Release
   - Debug
 
+install:
+    - git submodule update --init --recursive
+
 before_build:
-  - cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Visual Studio 16 2019" -A x64
+    - cmake -G "Visual Studio 15 2017 Win64" .
 
 build:
-  project: $(APPVEYOR_BUILD_FOLDER)\gamedev.sln
+  project: $(APPVEYOR_BUILD_FOLDER)\$(APPVEYOR_PROJECT_NAME).sln
 
 test_script:
-  - '%APPVEYOR_BUILD_FOLDER%\01-hello-world\%CONFIGURATION%\01-hello-world.exe'
-
-cache: c:\tools\vcpkg\installed\
+  - '%APPVEYOR_BUILD_FOLDER%\%CONFIGURATION%\tests.exe'

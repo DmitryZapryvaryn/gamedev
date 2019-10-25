@@ -8,8 +8,5 @@ add_library(${PROJECT_NAME}-shared SHARED include/hello_lib.hpp src/hello_lib.cp
 target_include_directories(${PROJECT_NAME}-shared
     PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
-if(BUILD_TEST)
-    include(CTest)
-    enable_testing()
-    add_subdirectory(tests)
-endif()
+enable_testing()
+add_subdirectory(tests)

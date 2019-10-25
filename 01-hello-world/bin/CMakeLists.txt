@@ -12,8 +12,5 @@ install(TARGETS ${PROJECT_NAME}-static ${PROJECT_NAME}-shared
     ARCHIVE DESTINATION ${PROJECT_BINARY_DIR}/lib
     RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
 
-if(BUILD_TEST)
-    include(CTest)
-    enable_testing()
-    add_subdirectory(tests)
-endif()
+enable_testing()
+add_subdirectory(tests)

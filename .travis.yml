@@ -1,7 +1,9 @@
 dist: trusty
-sudo: false
+sudo: required
 language: cpp
   
 script:
-  - cmake .
+  - mkdir build && cd build
+  - cmake ..
   - cmake --build .
+  - ctest .

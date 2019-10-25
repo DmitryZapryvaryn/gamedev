@@ -13,7 +13,8 @@ addons:
             - g++-9
 
 
-install:    
+install:
+  - sudo apt-get remove cmake
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
 

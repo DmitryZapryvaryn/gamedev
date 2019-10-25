@@ -13,10 +13,10 @@ configuration:
   - Debug
 
 before_build:
-  - cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Visual Studio 16 2019" -A x64 01-hello-world
+  - cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Visual Studio 16 2019" -A x64
 
 build:
-  project: $(APPVEYOR_BUILD_FOLDER)\all-tests-build.sln
+  project: $(APPVEYOR_BUILD_FOLDER)\gamedev.sln
 
 test_script:
   - '%APPVEYOR_BUILD_FOLDER%\01-hello-world\%CONFIGURATION%\01-hello-world.exe'

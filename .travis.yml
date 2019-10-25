@@ -27,7 +27,6 @@ install:
   - cd ${TRAVIS_BUILD_DIR}
 
 script:
-  - mkdir build && cd build
-  - cmake ..
+  - cmake .
   - cmake --build .
   - ctest .

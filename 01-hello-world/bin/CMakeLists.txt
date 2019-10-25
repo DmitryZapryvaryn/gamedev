@@ -2,7 +2,6 @@ project(bin CXX)
 
 add_executable(${PROJECT_NAME}-static src/main.cpp)
 target_link_libraries(${PROJECT_NAME}-static LINK_PUBLIC lib-static)
-target_link_options(${PROJECT_NAME}-static PRIVATE -static)
 
 add_executable(${PROJECT_NAME}-shared src/main.cpp)
 target_link_libraries(${PROJECT_NAME}-shared LINK_PUBLIC lib-shared)

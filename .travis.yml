@@ -1,3 +1,4 @@
+dist: xenial
 sudo: required
 language: cpp
 
@@ -11,22 +12,6 @@ addons:
         packages:
             - gcc-9
             - g++-9
-
-
-install:
-  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
-  - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
-
-  - travis_retry wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.15.4/cmake-3.15.4.tar.gz
-
-  - tar -xvf cmake-3.15.4.tar.gz > /dev/null
-  - cd cmake-3.15.4
-
-  - ./bootstrap
-  - make
-  - make install
-  
-  - cd ${TRAVIS_BUILD_DIR}
 
 script:
   - mkdir build && cd build

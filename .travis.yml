@@ -1,6 +1,17 @@
-dist: bionic
 sudo: required
 language: cpp
+
+compiler:
+  - gcc
+
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - gcc-9
+            - g++-9
+
 
 install:    
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"

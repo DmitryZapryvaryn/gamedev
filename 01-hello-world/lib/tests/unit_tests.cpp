@@ -1,7 +1,7 @@
-#include "hello_lib.hpp"
+#include <hello_lib.hpp>
 
 #define CATCH_CONFIG_MAIN
-#include "catch2/catch.hpp"
+#include <catch2/catch.hpp>
 
 TEST_CASE("test fizz") {
     int givenNumber = 5;

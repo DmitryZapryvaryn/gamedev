@@ -3,7 +3,7 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 
-TEST_CASE("test fizz") {
+TEST_CASE("test buzz") {
     int givenNumber = 5;
 
     std::string actual = fizzBuzz(givenNumber);

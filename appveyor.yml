@@ -11,7 +11,7 @@ configuration:
 
 install:
     - git submodule update --init --recursive
-
+    - %MSVC% vcpkg install sdl2:%PLATFORM%-windows sdl2-image:%PLATFORM%-windows sdl2-mixer:%PLATFORM%-windows expat:%PLATFORM%-windows glew:%PLATFORM%-windows gettext:%PLATFORM%-windows
 before_build:
     - cmake -G "Visual Studio 15 2017 Win64" .
 

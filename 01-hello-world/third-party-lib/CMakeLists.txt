@@ -1,4 +1,4 @@
-project(catch2)
+project(catch2 CXX)
 
 add_library(Catch2 INTERFACE)
 add_library(Catch2::Test ALIAS Catch2)

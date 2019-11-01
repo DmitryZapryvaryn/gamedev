@@ -24,6 +24,3 @@ install(TARGETS ${PROJECT_NAME}-static ${PROJECT_NAME}-shared
     LIBRARY DESTINATION ${PROJECT_BINARY_DIR}/lib
     ARCHIVE DESTINATION ${PROJECT_BINARY_DIR}/lib
     RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
-
-enable_testing()
-add_subdirectory(tests)

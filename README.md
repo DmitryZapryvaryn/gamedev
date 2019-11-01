@@ -8,6 +8,7 @@ Game engine course repo
 # requirements
   * gcc|g++ 8
   * CMake 3.15.X
+  * SDL2 (https://www.libsdl.org/download-2.0.php)
 
 # instalation
 on Ubuntu Linux:

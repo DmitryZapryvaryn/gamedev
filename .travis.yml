@@ -1,23 +1,23 @@
 os: linux
 language: cpp
 compiler: gcc
-env: C_COMPILER=gcc-9 CXX_COMPILER=g++-9
 
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - gcc-9
-    - g++-9
+    - gcc-8
+    - g++-8
     - ninja-build
 
 before_install:
-  - export CXX="g++-9" CC="gcc-9"
+  - export CXX="g++-8" CC="gcc-8"
   - sudo rm -rf /usr/local/cmake-3.12.4
 
-# the install step will take care of deploying a newer cmake version
-install:    
+
+install:
+  # the install step will take care of deploying a newer cmake version
   # first we create a directory for the CMake binaries
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
@@ -35,7 +35,7 @@ install:
   - cd ${TRAVIS_BUILD_DIR}
   
   # Install SDL2
-  - sudo apt-get install libsdl2-2.0-0
+  #- sudo apt-get install libsdl2-2.0-0
   - sudo apt-get install -qq libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libegl1-mesa-dev libgles2-mesa-dev
 
 #before_script:

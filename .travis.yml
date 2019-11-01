@@ -4,6 +4,7 @@ compiler: gcc
 sudo: require
 
 before_install:
+  - which cmake
   - sudo apt-get purge cmake
 
 # the install step will take care of deploying a newer cmake version

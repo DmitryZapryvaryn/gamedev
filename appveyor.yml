@@ -19,7 +19,4 @@ before_build:
     - cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Visual Studio 16 2019" -A x64 02-sdl
 
 build:
-  project: $(APPVEYOR_BUILD_FOLDER)\$(APPVEYOR_PROJECT_NAME).sln
-
-test_script:
-  - '%APPVEYOR_BUILD_FOLDER%\%CONFIGURATION%\unit-tests.exe'
+  project: $(APPVEYOR_BUILD_FOLDER)\02-sdl.sln

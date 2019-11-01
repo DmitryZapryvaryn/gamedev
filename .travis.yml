@@ -15,10 +15,6 @@ addons:
 before_install:
   - sudo apt-get update -qq
   
-  # Install SDL2
-  - sudo apt-get install libsdl2-2.0-0 -f
-  - sudo apt-get install -qq libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libegl1-mesa-dev libgles2-mesa-dev -f
-  
   - export CXX="g++-8" CC="gcc-8"
   
   # Remove old cmake
@@ -41,7 +37,11 @@ install:
   # preinstalled CMake with our own.
   - export PATH=${DEPS_DIR}/cmake-install:${DEPS_DIR}/cmake-install/bin:$PATH
   # don't forget to switch back to the main build directory once you are done
-  - cd ${TRAVIS_BUILD_DIR}  
+  - cd ${TRAVIS_BUILD_DIR}
+  
+  # Install SDL2
+  - sudo apt-get install libsdl2-2.0-0 -f
+  - sudo apt-get install -qq libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libegl1-mesa-dev libgles2-mesa-dev -f
 
 script:
   - mkdir build && cd build

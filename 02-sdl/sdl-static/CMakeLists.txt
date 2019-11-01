@@ -9,9 +9,7 @@ find_package(SDL2 REQUIRED)
 if(SDL2_FOUND)
     message(STATUS "SDL2 package found")
 
-    target_include_directories(sdl-main-static PRIVATE ${SDL2_INCLUDE_DIRS})
-
-    include(FindSDL)
+    #target_include_directories(sdl-main-static PRIVATE ${SDL2_INCLUDE_DIRS})
     target_link_libraries(sdl-main-static PRIVATE SDL2::SDL2-static SDL2::SDL2main)
 
 else()

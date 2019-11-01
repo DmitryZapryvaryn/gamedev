@@ -4,13 +4,13 @@ project(sdl-shared CXX)
 add_executable(sdl-main-shared src/main.cpp)
 target_compile_features(sdl-main-shared PRIVATE cxx_std_17)
 
-find_package(sdl2 REQUIRED)
+find_package(SDL2 REQUIRED)
 
-if(sdl2_FOUND)
+if(SDL2_FOUND)
     message(STATUS "SDL2 package found")
 
-    target_include_directories(sdl-main-shared PRIVATE ${SDL2_INCLUDE_DIRS})
-    target_link_libraries(sdl-main-shared PRIVATE ${SDL2_LIBRARIES})
+    #target_include_directories(sdl-main-shared PRIVATE ${SDL2_INCLUDE_DIRS})
+    target_link_libraries(sdl-main-shared PRIVATE SDL2::SDL2)
 
 else()
     find_library(LIB_SDL_SHARED

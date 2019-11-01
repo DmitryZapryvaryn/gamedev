@@ -5,6 +5,7 @@ sudo: require
 
 before_install:
   - sudo rm -rf /usr/local/cmake-3.12.4
+  - sudo apt-get install ninja-build
 
 # the install step will take care of deploying a newer cmake version
 install:    

@@ -42,6 +42,6 @@ install:
 
 script:
   - mkdir build && cd build
-  - cmake -GNinja ..
-  - cmake --build .
-  - ctest .
+  - sudo cmake -GNinja ..
+  - sudo cmake --build .
+  - sudo ctest .

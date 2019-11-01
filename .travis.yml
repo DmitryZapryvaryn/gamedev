@@ -1,4 +1,5 @@
 os: linux
+dist: trusty
 language: cpp
 compiler: gcc
 
@@ -12,7 +13,15 @@ addons:
     - ninja-build
 
 before_install:
+  - sudo apt-get update -qq
+  
+  # Install SDL2
+  #- sudo apt-get install libsdl2-2.0-0
+  - sudo apt-get install -qq libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libegl1-mesa-dev libgles2-mesa-dev
+  
   - export CXX="g++-8" CC="gcc-8"
+  
+  # Remove old cmake
   - sudo rm -rf /usr/local/cmake-3.12.4
 
 
@@ -32,14 +41,7 @@ install:
   # preinstalled CMake with our own.
   - export PATH=${DEPS_DIR}/cmake-install:${DEPS_DIR}/cmake-install/bin:$PATH
   # don't forget to switch back to the main build directory once you are done
-  - cd ${TRAVIS_BUILD_DIR}
-  
-  # Install SDL2
-  #- sudo apt-get install libsdl2-2.0-0
-  - sudo apt-get install -qq libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libegl1-mesa-dev libgles2-mesa-dev
-
-#before_script:
-  
+  - cd ${TRAVIS_BUILD_DIR}  
 
 script:
   - mkdir build && cd build

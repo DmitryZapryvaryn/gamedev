@@ -28,7 +28,7 @@ else()
 
     target_link_libraries(sdl-main-static PRIVATE
         ${LIB_SDL_STATIC}
-        -Wl,--enable-new-dtags
+        #-Wl,--enable-new-dtags
         -ldl
         -lm
         -lrt

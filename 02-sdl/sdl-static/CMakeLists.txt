@@ -16,8 +16,7 @@ if(MSVC)
 
 else()
     find_library(LIB_SDL_STATIC
-                NAMES libSDL2.a SDL2.lib
-                HINTS /usr/lib)
+                NAMES libSDL2.a SDL2.lib)
 
     if(LIB_SDL_STATIC)
         message(STATUS "SDL2 static lib found ${LIB_SDL_STATIC}")
@@ -25,7 +24,7 @@ else()
         message(FATAL_ERROR "SDL2 static lib not found")
     endif()
 
-    target_include_directories(sdl-main-static PRIVATE /usr/local/include/SDL2)
+    target_include_directories(sdl-main-static PUBLIC ${SDL2_INCL_DIR}/SDL2)
 
     target_link_libraries(sdl-main-static PRIVATE
         ${LIB_SDL_STATIC}

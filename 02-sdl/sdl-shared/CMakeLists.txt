@@ -14,8 +14,7 @@ if(MSVC)
 
 else()
     find_library(LIB_SDL_SHARED
-                NAMES libSDL2.so SDL2.dll
-                HINTS /usr/local/lib)
+                NAMES libSDL2.so SDL2.dll)
 
     if(LIB_SDL_SHARED)
         message(STATUS "SDL2 shared lib found ${LIB_SDL_SHARED}")
@@ -23,7 +22,7 @@ else()
         message(FATAL_ERROR "SDL2 shared lib not found")
     endif()
 
-    target_include_directories(sdl-main-shared PRIVATE /usr/local/include/SDL2)
+    target_include_directories(sdl-main-shared PUBLIC ${SDL2_INCL_DIR}/SDL2)
 
     target_link_libraries(sdl-main-shared PRIVATE
         ${LIB_SDL_SHARED}

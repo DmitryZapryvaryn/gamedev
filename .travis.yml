@@ -3,9 +3,17 @@ language: cpp
 compiler: gcc
 sudo: require
 
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-8
+    - g++-8
+    - ninja
+
 before_install:
   - sudo rm -rf /usr/local/cmake-3.12.4
-  - sudo apt-get install ninja-build
 
 # the install step will take care of deploying a newer cmake version
 install:    

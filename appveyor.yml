@@ -13,10 +13,16 @@ configuration:
   - Release
 
 install:
-    - git submodule update --init --recursive
+  - git submodule update --init --recursive
     
 before_build:
-    - cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Visual Studio 16 2019" -A x64 02-sdl
+  - cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Visual Studio 16 2019" -A x64 02-sdl
 
 build:
-  project: $(APPVEYOR_BUILD_FOLDER)\02-sdl.sln
+  project: $(APPVEYOR_BUILD_FOLDER)\sdl-hello-world.sln
+  
+test_script:
+  - '%APPVEYOR_BUILD_FOLDER%\sdl-static\%CONFIGURATION%\sdl-main-static.exe'
+  - '%APPVEYOR_BUILD_FOLDER%\sdl-shared\%CONFIGURATION%\sdl-main-shared.exe'
+  
+cache: c:\tools\vcpkg\installed\

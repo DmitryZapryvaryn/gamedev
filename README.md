@@ -6,8 +6,8 @@ MSVC 2017 x64 | [![Build status](https://ci.appveyor.com/api/projects/status/gpu
 Game engine course repo
 
 # requirements
-  * gcc 7.4.0
-  * CMake 3.12.X
+  * gcc|g++ 8
+  * CMake 3.15.X
 
 # instalation
 on Ubuntu Linux:

@@ -35,6 +35,7 @@ install:
   - cd ${TRAVIS_BUILD_DIR}
   
   # Install SDL2
+  - sudo apt-get install libsdl2-2.0-0
   - sudo apt-get install libsdl2-dev
 
 #before_script:
@@ -44,4 +45,4 @@ script:
   - mkdir build && cd build
   - cmake -GNinja ..
   - cmake --build .
-  - ctest .
+  - sudo ctest .

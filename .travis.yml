@@ -16,7 +16,9 @@ install:
   # extract the binaries; the output here is quite lengthy,
   # so we swallow it to not clutter up the travis console
   - tar -xvf cmake-3.15.5.tar.gz > /dev/null
-  - mv cmake-3.15.5 cmake-install
+  - cd cmake-3.15.5
+  - ./configure
+  - make && make install
   # add both the top-level directory and the bin directory from the archive
   # to the system PATH. By adding it to the front of the path we hide the
   # preinstalled CMake with our own.

@@ -9,7 +9,6 @@ addons:
     packages:
     - gcc-8
     - g++-8
-    - ninja
 
 before_install:
   - sudo rm -rf /usr/local/cmake-3.12.4
@@ -31,6 +30,9 @@ install:
   - export PATH=${DEPS_DIR}/cmake-install:${DEPS_DIR}/cmake-install/bin:$PATH
   # don't forget to switch back to the main build directory once you are done
   - cd ${TRAVIS_BUILD_DIR}
+  
+  # Install ninja
+  - sudo apt-get install ninja-build
   
   # Install SDL2
   - sudo apt-get install libsdl2-dev

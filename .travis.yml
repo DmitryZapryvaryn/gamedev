@@ -1,18 +1,20 @@
 os: linux
+dist: bionic
 language: cpp
 compiler: gcc
-env: C_COMPILER=gcc-8 CXX_COMPILER=g++-8
+env: C_COMPILER=gcc-9 CXX_COMPILER=g++-9
 
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - gcc-8
-    - g++-8
+    - gcc-9
+    - g++-9
+    - ninja-build
 
 before_install:
-  - which gcc
+  - export CXX="g++-9" CC="gcc-9"
   - sudo rm -rf /usr/local/cmake-3.12.4
 
 # the install step will take care of deploying a newer cmake version
@@ -33,24 +35,14 @@ install:
   # don't forget to switch back to the main build directory once you are done
   - cd ${TRAVIS_BUILD_DIR}
   
-  # Install ninja
-  - sudo apt-get install ninja-build
-  
   # Install SDL2
   - sudo apt-get install libsdl2-dev
 
 #before_script:
-#  - sudo ln -s /usr/bin/gcc /usr/local/bin/gcc
-#  - sudo ln -s /usr/bin/g++ /usr/local/bin/g++
-#  
-  # Export CC and CXX to tell cmake which compiler to use
-#  - export CC=/usr/bin/gcc
-#  - export CXX=/usr/bin/g++
   
-#  - gcc -v && g++ -v && cmake --version
 
 script:
   - mkdir build && cd build
-  - cmake DCMAKE_CXX_COMPILER=${CXX_COMPILER} -DCMAKE_C_COMPILER=${C_COMPILER} -GNinja ..
+  - cmake -GNinja ..
   - cmake --build .
   - ctest .

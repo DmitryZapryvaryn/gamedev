@@ -39,12 +39,12 @@ install:
   - sudo apt-get install libsdl2-dev
 
 before_script:
-  - sudo ln -s /usr/bin/gcc-5.4 /usr/local/bin/gcc
-  - sudo ln -s /usr/bin/g++-5.4 /usr/local/bin/g++
+  - sudo ln -s /usr/bin/gcc /usr/local/bin/gcc
+  - sudo ln -s /usr/bin/g++ /usr/local/bin/g++
   
   # Export CC and CXX to tell cmake which compiler to use
-  - export CC=/usr/bin/gcc-5.4
-  - export CXX=/usr/bin/g++-5.4
+  - export CC=/usr/bin/gcc
+  - export CXX=/usr/bin/g++
   
   - gcc -v && g++ -v && cmake --version
 

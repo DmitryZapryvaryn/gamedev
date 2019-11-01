@@ -6,7 +6,7 @@ target_compile_features(sdl-main-shared PRIVATE cxx_std_17)
 
 find_package(SDL2 REQUIRED)
 
-if(SDL2_FOUND)
+if(MSVC)
     message(STATUS "SDL2 package found")
 
     #target_include_directories(sdl-main-shared PRIVATE ${SDL2_INCLUDE_DIRS})

@@ -8,7 +8,7 @@ endif()
 
 find_package(SDL2 REQUIRED)
 
-if(SDL2_FOUND)
+if(MSVC)
     message(STATUS "SDL2 package found")
 
     #target_include_directories(sdl-main-static PRIVATE ${SDL2_INCLUDE_DIRS})

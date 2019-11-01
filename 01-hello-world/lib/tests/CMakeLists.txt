@@ -6,9 +6,9 @@ add_dependencies(unit-tests
     lib-shared
     Catch2::Test)
 
-target_link_libraries(unit-tests LINK_PUBLIC
-    lib-shared
-    Catch2::Test
+target_link_libraries(unit-tests 
+    PUBLIC lib-shared
+    PUBLIC Catch2::Test
 )
 
 enable_testing()

@@ -5,12 +5,12 @@ project(bin CXX)
 add_executable(${PROJECT_NAME}-static src/main.cpp)
 add_dependencies(${PROJECT_NAME}-static lib-static)
 target_compile_features(${PROJECT_NAME}-static PRIVATE cxx_std_17)
-target_link_libraries(${PROJECT_NAME}-static LINK_PUBLIC lib-static)
+target_link_libraries(${PROJECT_NAME}-static PRIVATE lib-static)
 
 add_executable(${PROJECT_NAME}-shared src/main.cpp)
 add_dependencies(${PROJECT_NAME}-shared lib-shared)
 target_compile_features(${PROJECT_NAME}-shared PRIVATE cxx_std_17)
-target_link_libraries(${PROJECT_NAME}-shared LINK_PUBLIC lib-shared)
+target_link_libraries(${PROJECT_NAME}-shared PUBLIC lib-shared)
 
 if (MSVC)
     # warning level 4 and all warnings as errors

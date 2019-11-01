@@ -1,6 +1,7 @@
 os: linux
 language: cpp
 compiler: gcc
+env: C_COMPILER=gcc-8 CXX_COMPILER=g++-8
 
 addons:
   apt:
@@ -38,18 +39,18 @@ install:
   # Install SDL2
   - sudo apt-get install libsdl2-dev
 
-before_script:
-  - sudo ln -s /usr/bin/gcc /usr/local/bin/gcc
-  - sudo ln -s /usr/bin/g++ /usr/local/bin/g++
-  
+#before_script:
+#  - sudo ln -s /usr/bin/gcc /usr/local/bin/gcc
+#  - sudo ln -s /usr/bin/g++ /usr/local/bin/g++
+#  
   # Export CC and CXX to tell cmake which compiler to use
-  - export CC=/usr/bin/gcc
-  - export CXX=/usr/bin/g++
+#  - export CC=/usr/bin/gcc
+#  - export CXX=/usr/bin/g++
   
-  - gcc -v && g++ -v && cmake --version
+#  - gcc -v && g++ -v && cmake --version
 
 script:
   - mkdir build && cd build
-  - cmake -G Ninja ..
+  - cmake DCMAKE_CXX_COMPILER=${CXX_COMPILER} -DCMAKE_C_COMPILER=${C_COMPILER} -GNinja ..
   - cmake --build .
   - ctest .

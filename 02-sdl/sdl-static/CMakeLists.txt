@@ -2,7 +2,9 @@ project(sdl-static CXX)
 
 add_executable(sdl-main-static src/main.cpp)
 target_compile_features(sdl-main-static PRIVATE cxx_std_17)
-target_compile_options(sdl-main-static PRIVATE -static)
+if(NOT MSVC)
+    target_compile_options(sdl-main-static PRIVATE -static)
+endif()
 
 find_package(SDL2 REQUIRED)
 

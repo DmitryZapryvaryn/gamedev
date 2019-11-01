@@ -4,8 +4,7 @@ compiler: gcc
 sudo: require
 
 before_install:
-  - which cmake
-  - sudo apt-get purge cmake
+  - sudo rm -rf /usr/local/cmake-3.12.4
 
 # the install step will take care of deploying a newer cmake version
 install:    

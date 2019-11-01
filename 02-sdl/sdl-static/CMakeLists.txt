@@ -6,10 +6,11 @@ if(NOT MSVC)
     target_compile_options(sdl-main-static PRIVATE -static)
 endif()
 
-find_package(SDL2 REQUIRED)
+
 
 if(MSVC)
-    message(STATUS "SDL2 package found")
+
+    find_package(SDL2 REQUIRED)
 
     #target_include_directories(sdl-main-static PRIVATE ${SDL2_INCLUDE_DIRS})
     target_link_libraries(sdl-main-static PRIVATE SDL2::SDL2-static SDL2::SDL2main)

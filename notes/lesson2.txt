@@ -1,0 +1,31 @@
+g++ -static - собрать статически,
+    libstdc++-static, glibc-static - если не работает
+    -E - выхлоп препроц
+    -S - получить ассемблерный код, передавать .cxx|cpp
+    -c - compile, передавать *.s > *.o
+    -v - verbose
+    -nostartfiles
+    -nostdlib
+as
+
+ar - archive - static lib
+
+ld - linker
+ld main.o /usr/lib64/libc.a
+
+strip
+
+file - информация о файле
+
+gcc -dM -E - < /dev/null -
+wc -l - посчитать коль-во строк
+
+
+extern "C"
+_start() - подменить
+
+beautifier
+format code in qt_creator: ctrl+x ctrl+s
+
+HW:g++ + make|ninja + (cmake + ctest) 
+CI на github|bitbucket|gitlab, сделать папки под домашку

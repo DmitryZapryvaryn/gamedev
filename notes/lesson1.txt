@@ -1,0 +1,12 @@
+cmake:
+	release, debug build
+	-G - choose generator
+
+tools:
+	ninja
+	gcc manual
+	ldd - link dynamic
+	gdb: -, start, p(print) %variable%
+
+optional:
+	emacs

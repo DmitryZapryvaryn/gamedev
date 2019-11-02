@@ -1,0 +1,22 @@
+*	в readme.me добавить информацию о себе и проекте,
+	добавить ссылки на билд
+
+*	docker hub
+
+* 	gitlab можно поднять свой сервер для билда
+	bitbucket - easy way
+	
+*	cmake:
+		STATIC, SHARED
+
+mangle/demangle
+* nm - имена в bin
+* objdump
+
+* snake_case - для библиотек и имен файлов
+
+* [[export/import]]
+
+* всё системное, общее - dll
+  всё своё - static
+  для макс перформанса - static

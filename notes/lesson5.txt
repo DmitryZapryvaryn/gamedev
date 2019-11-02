@@ -1,0 +1,13 @@
+Robert Nistrom. Game programming patterns
+game loop:
+
+    while(true) {
+        1. handle_input(); - опросить ввод перед отрисовкой и обновлением мира
+        1/2. dt = get_dt();
+        2. update_game_world(dt); dt - delta time, lower_bound < dt < upper_bound
+            if dt >> upper_bound: разбить на несколько вызовов update(dt') c меньшим dt
+
+        3. update_animation(dt); Джейсон Грегори, 
+
+        4. render();
+    }

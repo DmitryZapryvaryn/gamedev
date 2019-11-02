@@ -48,4 +48,4 @@ script:
   - mkdir build && cd build
   - cmake -GNinja ..
   - cmake --build .
-  - sudo ctest .
+  - ctest .

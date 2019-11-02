@@ -41,6 +41,7 @@ install:
   
   # Install SDL2
   - sudo apt-get install -qq build-essential mercurial make autoconf automake libtool libgles2-mesa-dev libasound2-dev libpulse-dev libaudio-dev libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libxinerama-dev libxxf86vm-dev libxss-dev libgl1-mesa-dev -f
+  - sudo apt-get install -qq libsndifsdl2-dev libsdl2-ttf-dev libsdl2-net-dev libsdl2-mixer-dev libsdl2-image-dev libsdl2-gfx-dev games-c++-dev libpjproject-dev
   - sudo apt-get install -qq libsdl2-dev
   - sudo apt-get install -qq libsdl2-2.0-0
   

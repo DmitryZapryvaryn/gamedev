@@ -4,8 +4,6 @@ project(sdl-shared CXX)
 add_executable(sdl-main-shared src/main.cpp)
 target_compile_features(sdl-main-shared PRIVATE cxx_std_17)
 
-
-
 if(MSVC)
     find_package(SDL2 REQUIRED)
 
@@ -14,7 +12,7 @@ if(MSVC)
 
 else()
     find_library(LIB_SDL_SHARED
-                NAMES libSDL2.so SDL2.dll)
+                NAMES libSDL2.so)
 
     if(LIB_SDL_SHARED)
         message(STATUS "SDL2 shared lib found ${LIB_SDL_SHARED}")
@@ -30,8 +28,6 @@ else()
         -pthread
         -lSDL2)
 endif()
-
-
 
 if (MSVC)
     # warning level 4 and all warnings as errors

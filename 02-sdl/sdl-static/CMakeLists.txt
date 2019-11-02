@@ -6,8 +6,6 @@ if(NOT MSVC)
     target_compile_options(sdl-main-static PRIVATE -static)
 endif()
 
-
-
 if(MSVC)
 
     find_package(SDL2 REQUIRED)
@@ -17,7 +15,7 @@ if(MSVC)
 
 else()
     find_library(LIB_SDL_STATIC
-                NAMES libSDL2.a SDL2.lib)
+                NAMES libSDL2.a)
 
     if(LIB_SDL_STATIC)
         message(STATUS "SDL2 static lib found ${LIB_SDL_STATIC}")
@@ -29,12 +27,13 @@ else()
 
     target_link_libraries(sdl-main-static PRIVATE
         ${LIB_SDL_STATIC}
-        #-Wl,--enable-new-dtags
+        -Wl,--enable-new-dtags
         -ldl
         -lm
         -lrt
         -Wl,--no-undefined
-        -pthread)
+        -pthread
+        -lSDL2)
 endif()
 
 if (MSVC)

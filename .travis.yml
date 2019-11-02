@@ -40,10 +40,10 @@ install:
   - cd ${TRAVIS_BUILD_DIR}
   
   # Install SDL2
-  - sudo apt-get install libsdl2-2.0-0 -f
-  - sudo apt-get install -qq libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libegl1-mesa-dev libgles2-mesa-dev -f
-  - sudo apt-get install -qq build-essential mercurial make autoconf automake libtool libasound2-dev libpulse-dev libaudio-dev libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libxinerama-dev libxxf86vm-dev libxss-dev libgl1-mesa-dev
-
+  - sudo apt-get install -qq build-essential mercurial make autoconf automake libtool libgles2-mesa-dev libasound2-dev libpulse-dev libaudio-dev libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libxinerama-dev libxxf86vm-dev libxss-dev libgl1-mesa-dev -f
+  - sudo apt-get install -qq libsdl2-dev
+  - sudo apt-get install -qq libsdl2-2.0-0
+  
 script:
   - mkdir build && cd build
   - cmake -GNinja ..

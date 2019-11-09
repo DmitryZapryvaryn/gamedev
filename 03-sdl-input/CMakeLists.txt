@@ -1,10 +1,6 @@
+cmake_minimum_required(VERSION 3.15)
+
 project(sdl-input)
 
-
-add_executable(sdl-input src/main.cpp)
-target_compile_features(sdl-input PRIVATE cxx_std_17)
-
-
-find_package(SDL2 REQUIRED)
-
-target_link_libraries(sdl-input PUBLIC SDL2::SDL2 SDL2::SDL2main)
+add_subdirectory(03-1-input-simple)
+add_subdirectory(03-2-input-engine)

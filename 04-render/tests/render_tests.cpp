@@ -31,4 +31,21 @@ int main() {
 
     img.save("lines.ppm");
   }
+
+  // triangle test
+  {
+    MyRender::Image<600u, 400u> img;
+
+    // clang-format off
+    const auto triangle_positions =
+        MyRender::get_triangle_positions(
+            {50, 50},
+            {50, static_cast<int>(img.height()) - 50},
+            {static_cast<int>(img.width()) - 50, static_cast<int>(img.height()) - 50});
+    // clang-format on
+
+    MyRender::draw(img, triangle_positions);
+
+    img.save("triangle.ppm");
+  }
 }

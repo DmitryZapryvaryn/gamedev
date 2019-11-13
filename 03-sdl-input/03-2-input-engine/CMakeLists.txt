@@ -1,4 +1,4 @@
-project(sdl-input-engine)
+project(sdl-input-engine CXX)
 
 
 add_library(engine SHARED include/engine.hpp src/engine.cpp)

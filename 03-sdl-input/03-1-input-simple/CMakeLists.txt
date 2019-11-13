@@ -1,4 +1,4 @@
-project(sdl-input-simple)
+project(sdl-input-simple CXX)
 
 
 add_executable(sdl-input-simple src/main.cpp)

@@ -29,10 +29,11 @@ template <size_t w, size_t h> struct Image {
 
   pixels load(const std::string &path);
 
-  // fields
-  pixels data;
   size_t width() { return w; }
   size_t height() { return h; }
+
+  // fields
+  pixels data;
 };
 
 } // namespace MyRender

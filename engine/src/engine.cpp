@@ -45,10 +45,9 @@ std::istream &operator>>(std::istream &in, triangle &tr) {
 
 std::string load_shader_src(const std::string &filename) {
 
-  std::ifstream shader_file(filename, std::ios::binary);
+  std::ifstream shader_file(filename, std::ios::in);
   if (!shader_file.good()) {
-    std::cerr << "File '" << filename << "' doesn't exist!" << std::endl;
-    return nullptr;
+    throw new std::runtime_error("File '" + filename + "' doesn't exist!");
   }
   if (!shader_file.is_open()) {
     throw new std::runtime_error("Could not read file: " +

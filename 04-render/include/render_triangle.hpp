@@ -6,9 +6,9 @@
 
 namespace MyRender {
 
-std::vector<Vec2> get_triangle_positions(const Vec2 &vertice1,
-                                         const Vec2 &vertice2,
-                                         const Vec2 &vertice3) {
+std::vector<position> get_triangle_positions(const position &vertice1,
+                                         const position &vertice2,
+                                         const position &vertice3) {
 
   // v1 -> v2
   auto edge1 = get_line_positions(vertice1, vertice2);
@@ -19,7 +19,7 @@ std::vector<Vec2> get_triangle_positions(const Vec2 &vertice1,
   // v3 -> v1
   auto edge3 = get_line_positions(vertice3, vertice1);
 
-  std::vector<Vec2> result;
+  std::vector<position> result;
 
   result.reserve(edge1.size() + edge2.size() + edge3.size());
   std::move(edge1.begin(), edge1.end(), std::back_inserter(result));
@@ -30,32 +30,32 @@ std::vector<Vec2> get_triangle_positions(const Vec2 &vertice1,
 }
 
 template <size_t w, size_t h>
-void draw_indexed_triangle(Image<w, h> &img, const std::vector<Vec2> &vertices,
+void draw_indexed_triangle(Image<w, h> &img, const std::vector<position> &vertices,
                            const std::vector<uint8_t> &indexes) {
   for (size_t i = 0; i < indexes.size(); i += 3) {
-    const Vec2 v1 = vertices.at(indexes.at(i + 0));
-    const Vec2 v2 = vertices.at(indexes.at(i + 1));
-    const Vec2 v3 = vertices.at(indexes.at(i + 2));
+    const position v1 = vertices.at(indexes.at(i + 0));
+    const position v2 = vertices.at(indexes.at(i + 1));
+    const position v3 = vertices.at(indexes.at(i + 2));
 
-    draw(img, get_triangle_positions(v1, v2, v3));
+    img.draw(get_triangle_positions(v1, v2, v3));
   }
 }
 
-std::vector<Vec2> fill_triangle(const Vec2 &top, const Vec2 &middle,
-                                const Vec2 &bottom) {
+std::vector<position> fill_triangle(const position &top, const position &middle,
+                                const position &bottom) {
 
   auto edge1 = get_line_positions(top, bottom);
   auto edge2 = get_line_positions(top, middle);
 
-  std::vector<Vec2> result;
+  std::vector<position> result;
 
   std::copy(edge1.begin(), edge1.end(), std::back_inserter(result));
   std::copy(edge2.begin(), edge2.end(), std::back_inserter(result));
 
   std::sort(edge1.begin(), edge1.end(),
-            [](const Vec2 &lhs, const Vec2 &rhs) { return lhs.y < rhs.y; });
+            [](const position &lhs, const position &rhs) { return lhs.y < rhs.y; });
   std::sort(edge2.begin(), edge2.end(),
-            [](const Vec2 &lhs, const Vec2 &rhs) { return lhs.y < rhs.y; });
+            [](const position &lhs, const position &rhs) { return lhs.y < rhs.y; });
 
   size_t i = 0;
   size_t j = 0;
@@ -75,16 +75,16 @@ std::vector<Vec2> fill_triangle(const Vec2 &top, const Vec2 &middle,
   return result;
 }
 
-std::vector<Vec2> rasterize_triangle(const Vec2 &vertice1, const Vec2 &vertice2,
-                                     const Vec2 &vertice3) {
+std::vector<position> rasterize_triangle(const position &vertice1, const position &vertice2,
+                                     const position &vertice3) {
 
-  std::array<Vec2, 3> vertices = {vertice1, vertice2, vertice3};
+  std::array<position, 3> vertices = {vertice1, vertice2, vertice3};
   std::sort(vertices.begin(), vertices.end(),
-            [](Vec2 &lhs, Vec2 &rhs) { return lhs.y < rhs.y; });
+            [](position &lhs, position &rhs) { return lhs.y < rhs.y; });
 
-  Vec2 top = vertices[0];
-  Vec2 middle_A = vertices[1];
-  Vec2 bottom = vertices[2];
+  position top = vertices[0];
+  position middle_A = vertices[1];
+  position bottom = vertices[2];
 
   if (middle_A.y == bottom.y) {
     return fill_triangle(top, middle_A, bottom);
@@ -99,11 +99,11 @@ std::vector<Vec2> rasterize_triangle(const Vec2 &vertice1, const Vec2 &vertice2,
                             (bottom.y - top.y));
     }
 
-    Vec2 middle_B(x_middel_B, middle_A.y);
+    position middle_B(x_middel_B, middle_A.y);
     auto top_triangle = fill_triangle(top, middle_A, middle_B);
     auto bottom_triangle = fill_triangle(bottom, middle_A, middle_B);
 
-    std::vector<Vec2> result(top_triangle.size() + bottom_triangle.size());
+    std::vector<position> result(top_triangle.size() + bottom_triangle.size());
     std::move(top_triangle.begin(), top_triangle.end(),
               std::back_inserter(result));
     std::move(bottom_triangle.begin(), bottom_triangle.end(),

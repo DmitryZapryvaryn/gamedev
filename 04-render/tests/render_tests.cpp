@@ -10,15 +10,15 @@
 const static uint16_t WIDTH = 600u;
 const static uint16_t HEIGHT = 400u;
 
-const static std::vector<std::vector<MyRender::Vec2>> TEST_VERTICES = {
-    {MyRender::Vec2(10, 70), MyRender::Vec2(50, 160), MyRender::Vec2(70, 80)},
-    {MyRender::Vec2(180, 50), MyRender::Vec2(150, 1), MyRender::Vec2(70, 180)},
-    {MyRender::Vec2(180, 150), MyRender::Vec2(120, 160),
-     MyRender::Vec2(130, 180)}};
+const static std::vector<std::vector<MyRender::position>> TEST_VERTICES = {
+    {MyRender::position(10, 70), MyRender::position(50, 160), MyRender::position(70, 80)},
+    {MyRender::position(180, 50), MyRender::position(150, 1), MyRender::position(70, 180)},
+    {MyRender::position(180, 150), MyRender::position(120, 160),
+     MyRender::position(130, 180)}};
 
-using line_points = std::vector<std::pair<MyRender::Vec2, MyRender::Vec2>>;
+using line_points = std::vector<std::pair<MyRender::position, MyRender::position>>;
 using triangle_points =
-    std::vector<std::tuple<MyRender::Vec2, MyRender::Vec2, MyRender::Vec2>>;
+    std::vector<std::tuple<MyRender::position, MyRender::position, MyRender::position>>;
 
 line_points generate_lines_pos() {
 
@@ -26,8 +26,8 @@ line_points generate_lines_pos() {
 
   using namespace MyRender;
   std::generate(result.begin(), result.end(), []() {
-    return std::pair(Vec2(std::rand() % WIDTH, std::rand() % HEIGHT),
-                     Vec2(std::rand() % WIDTH, std::rand() % HEIGHT));
+    return std::pair(position(std::rand() % WIDTH, std::rand() % HEIGHT),
+                     position(std::rand() % WIDTH, std::rand() % HEIGHT));
   });
 
   return result;
@@ -40,7 +40,7 @@ triangle_points generate_triangle_vertices() {
   for (int i = 0; i < WIDTH - 60; i += 60) {
     for (int j = 0; j < HEIGHT - 40; j += 40) {
       result.emplace_back(
-          std::tuple(Vec2(i, j), Vec2(i + 60, j), Vec2(i, j + 40)));
+          std::tuple(position(i, j), position(i + 60, j), position(i, j + 40)));
     }
   }
 
@@ -53,11 +53,11 @@ int main() {
   {
     using namespace MyRender;
     Image<600u, 400u> img;
-    set_background(img, {255, 255, 255});
+    img.set_background({255, 255, 255});
 
     for (const auto &[start_point, end_point] : generate_lines_pos()) {
       const auto line_positions = get_line_positions(start_point, end_point);
-      draw(img, line_positions);
+      img.draw(line_positions);
     }
 
     img.save("lines.ppm");
@@ -67,11 +67,11 @@ int main() {
   {
     using namespace MyRender;
     Image<600u, 400u> img;
-    set_background(img, {255u, 255u, 255u});
+    img.set_background({255u, 255u, 255u});
 
     for (const auto &[v1, v2, v3] : generate_triangle_vertices()) {
       const auto triangle_positions = get_triangle_positions(v1, v2, v3);
-      draw(img, triangle_positions);
+      img.draw(triangle_positions);
     }
 
     img.save("triangles.ppm");
@@ -81,10 +81,10 @@ int main() {
   {
     using namespace MyRender;
     Image<600u, 400u> img;
-    set_background(img, {255, 255, 255});
+    img.set_background({255, 255, 255});
 
-    std::vector<Vec2> vertices = {Vec2(20, 30), Vec2(156, 23), Vec2(90, 300),
-                                  Vec2(400, 230)};
+    std::vector<position> vertices = {position(20, 30), position(156, 23), position(90, 300),
+                                  position(400, 230)};
     std::vector<uint8_t> indexes = {1, 2, 0, 3, 0, 1};
 
     draw_indexed_triangle(img, vertices, indexes);
@@ -96,13 +96,13 @@ int main() {
   {
     using namespace MyRender;
     Image<600u, 400u> img;
-    set_background(img, {0, 0, 0});
+    img.set_background({0, 0, 0});
 
     for (const auto &vertices : TEST_VERTICES) {
       const auto filled_triangle_positions =
           rasterize_triangle(vertices[0], vertices[1], vertices[2]);
 
-      draw(img, filled_triangle_positions);
+      img.draw(filled_triangle_positions);
     }
 
     img.save("filled_triangle.ppm");

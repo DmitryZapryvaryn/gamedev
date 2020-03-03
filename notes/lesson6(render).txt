@@ -1,0 +1,9 @@
+изучить как рисовать линию
+
+заполнение треугольника:
+http://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html
+https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/rasterization-stage
+
+render pipeline
+
+доп.: отрисовать сетку; мышка отталкивает узлы в опредленном радиусе; чем ближе курсор, тем краснее, дальше - зеленее узел решетки
